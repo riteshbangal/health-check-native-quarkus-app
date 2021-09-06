@@ -32,9 +32,14 @@ public class HealthCheck {
 
     private static class Processor implements Runnable {
 
-        String sURL = "http://localhost:5000/health"; //just a string
         private Logger LOGGER = Logger.getLogger(this.getClass().getName());
+
+        //String sURL = "http://localhost:5000/health"; //just a string
+        //String sURL = "http://localhost:8080/hello"; //just a string
+        //String sURL = "http://localhost:8080/hello/v1"; //just a string
         //String sURL = "https://app-gw.eintuition.net/readstories-app"; //just a string
+        String sURL = "https://github.com/riteshbangal/health-check-native-quarkus-app"; //just a string
+
 
         @Override
         public void run() {
@@ -58,7 +63,7 @@ public class HealthCheck {
 
             for (Future<Response> future : resultList) {
                 try {
-                    Response response = future.get(5, TimeUnit.SECONDS);
+                    Response response = future.get(10, TimeUnit.SECONDS);
                     if (response.getResponseCode() == HTTP_SUCCESS_STATUS_CODE || HTTP_SUCCESS_STATUS_MESSAGE.equals(response.getResponseMessage())) {
                         LOGGER.info("Future result is - Healthy");
                     } else {
@@ -68,7 +73,7 @@ public class HealthCheck {
                     future.cancel(false);
                     LOGGER.info("future.isCancelled(): " + future.isCancelled());
 
-                    //e.printStackTrace();
+                    e.printStackTrace();
                 }
             }
 

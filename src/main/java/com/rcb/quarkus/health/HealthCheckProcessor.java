@@ -45,6 +45,7 @@ public class HealthCheckProcessor implements Callable<Response> {
             return new Response(connection, url).invoke();
         } catch (Exception e) {
             LOGGER.info(e.getMessage());
+            e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }

@@ -17,4 +17,20 @@ public class GreetingResource {
         logger.info("Calling hello()");
         return "Hello RESTEasy";
     }
+
+    @GET
+    @Path("/v1")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String hello_v1() {
+        logger.info("Calling hello v1()");
+        return "V1: Hello RESTEasy";
+    }
+
+    @GET
+    @Path("/v2")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String hello_v2() {
+        logger.info("Calling hello v2()");
+        return "V2: Hello RESTEasy";
+    }
 }
